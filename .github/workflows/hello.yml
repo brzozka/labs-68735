@@ -1,20 +1,26 @@
-name: hello
+name: Hello
+
 
 on:
+  
   push:
-    branches: [master]
+    branches: [ master ]
 
+ 
   workflow_dispatch:
 
-jobs:
 
+jobs:
+  
   build:
     
+    
 
-  steps:
-    - uses: actions/checkout@v2
+    
+    steps:
+      
+      - uses: actions/checkout@v2
 
-
-
-    - name: hello
-     run: echo "Hello, welcome to my repository"
+      
+      - name: welcome
+        run: echo Hello, welcome to my repository

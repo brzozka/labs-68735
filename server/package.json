@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Assigment",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brzozka/labs-68735.git"
+  },
+  "author": "Bartosz Brzozka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brzozka/labs-68735/issues"
+  },
+  "homepage": "https://github.com/brzozka/labs-68735#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

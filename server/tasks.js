@@ -1,6 +1,9 @@
 import express from 'express';
+import dbClient from './db.js';
 
 const router = express.Router();
+const db = dbClient.db('labs');
+const collection = db.collection('tasks');
 
 const tasks = [
     {
@@ -16,8 +19,10 @@ const tasks = [
       title: 'Try out some express.js',
     },
   ];
-router.get('/', (req, res) => {
-    res.status(200).send(tasks)
+router.get('/', async (req, res) => {
+    const taskDoc = await collection.find({}).toArray();
+
+    res.send(taskDoc);
   });
   
 router.post('/', (req, res) => {

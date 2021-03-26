@@ -1,9 +1,20 @@
 import express from 'express';
 import tasksRouter from './tasks.js';
+import client from './db.js';
+
+
+
 
 const app = express();
 
 app.use(express.json());
+
+app.listen(4000, async () => {
+  console.log('Server is ready');
+
+  await client.connect();
+  console.log('Database is ready');
+});
 
 app.get('/', (req, res) => {
     res.send('Hello, welcome to my assigment');
@@ -12,6 +23,3 @@ app.get('/', (req, res) => {
 app.use('/api/tasks', tasksRouter);
 
 
-app.listen(4000, () => {
-    console.log('This app is listining at http://localhost:4000');
-});

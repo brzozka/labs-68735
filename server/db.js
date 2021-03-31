@@ -6,4 +6,6 @@ const client = new mongodb.MongoClient(connectionString, {
   useUnifiedTopology: true,
 });
 
+export const getCollection = (name) => client.db('labs').collection(name);
+
 export default client;

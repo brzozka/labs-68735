@@ -1,10 +1,8 @@
 import express from 'express';
-import dbClient from './db.js';
+import mongodb from 'mongodb';
+import {getCollection} from './db.js';
 
 const router = express.Router();
-const db = dbClient.db('labs');
-const collection = db.collection('tasks');
-
 const tasks = [
     {
       id: 'ID1',
@@ -20,21 +18,31 @@ const tasks = [
     },
   ];
 router.get('/', async (req, res) => {
-    const taskDoc = await collection.find({}).toArray();
-
+  const taskCollection = getCollection('tasks');
+  
+  const taskDoc = await taskCollection.find({}).toArray();
+    
     res.send(taskDoc);
   });
   
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+    
+    const taskCollection = getCollection('tasks');
     const newTask = req.body;
-
-    tasks.push(newTask)
-
-    res.status(201).send('Task succesfully created')
+    try {
+      await taskCollection.insertOne(newTask);
+      res.status(201).send('Task added!');
+    } catch (e) {
+      res.status(500).send('Unknown error');
+    }
+    
   });
   
-router.get('/:id', (req, res) => {
-    const task = tasks.find(task => task.id === req.params.id)
+router.get('/:id', async (req, res) => {
+  const taskCollection = getCollection('tasks');
+  const taskID  = mongodb.ObjectID(req.params.id);
+  const task = await taskCollection.findOne({_id: taskID });
+  
 
 
     if(task) {
@@ -44,8 +52,10 @@ router.get('/:id', (req, res) => {
     }
 
   });
-router.delete('/:id', (req, res) => {
-    const task = tasks.find(task => task.id === req.params.id)
+router.delete('/:id', async (req, res) => {
+    const taskCollection = getCollection('tasks');
+    const taskID  = mongodb.ObjectID(req.params.id);
+    const task = await taskCollection.remove({_id : taskID});
 
     if(task){
     res.send('DELETE request completed')

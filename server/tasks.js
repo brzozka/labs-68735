@@ -55,7 +55,7 @@ router.get('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     const taskCollection = getCollection('tasks');
     const taskID  = mongodb.ObjectID(req.params.id);
-    const task = await taskCollection.remove({_id : taskID});
+    const task = await taskCollection.deleteOne({_id : taskID});
 
     if(task){
     res.send('DELETE request completed')

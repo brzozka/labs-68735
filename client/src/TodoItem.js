@@ -1,12 +1,12 @@
-function TodoItem({ title, isCompleted }) {
+function TodoItem({ title, isCompleted, onCompleted, onDelete }) {
     return (
       <div
         className="todo-item"
         style={{ textDecoration: isCompleted ? 'line-through' : '' }}>
         {title}
         <div>
-          <button>Done</button>
-          <button>Delete</button>
+          <button onClick={onCompleted}>Done</button>
+          <button onClick={onDelete}>Delete</button>
         </div>
       </div>
     );

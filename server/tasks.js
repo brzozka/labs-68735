@@ -63,6 +63,18 @@ router.delete('/:id', async (req, res) => {
         res.status(404).send('Task with this Id not found')
     }
 });
+router.put('/:id', async (req, res) => {
+  const taskCollection = getCollection('tasks');
+  const taskID  = mongodb.ObjectID(req.params.id);
+  const taskChanges = req.body;
+  const task = await taskCollection.updateOne({ _id : taskID }, { $set: taskChanges });
+
+  if(task){
+  res.send('Update request completed')
+  }else {
+      res.status(404).send('Task with this Id not found')
+  }
+});
 
 
 export default router;

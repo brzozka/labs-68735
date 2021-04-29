@@ -1,8 +1,10 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+describe('Basic math operations', () => {
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  test('can add numbers', () =>{
+    expect(2 + 2).toBe(4);
+  });
+  test('can multiply numbers', () =>{
+    expect(3 * 3).toBe(9);
+  });
+
 });

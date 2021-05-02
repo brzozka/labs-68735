@@ -2,41 +2,34 @@ name: Run test
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
+
   workflow_dispatch:
-
-
 
 jobs:
   client:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2 
-      
+        uses: actions/checkout@v2
+
       - name: Install dependencies
         run: cd client && npm ci
-
 
       - name: Lint code
         run: cd client && npm run lint
 
-
       - name: Test code
         run: cd client && npm test
 
-    server:
+  server:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2 
-      
+        uses: actions/checkout@v2
+
       - name: Install dependencies
         run: cd server && npm ci
 
-
       - name: Lint code
         run: cd server && npm run lint
-
-
-      

@@ -3,20 +3,7 @@ import mongodb from 'mongodb';
 import {getCollection} from './db.js';
 
 const router = express.Router();
-const tasks = [
-    {
-      id: 'ID1',
-      title: 'Do the assigment',
-    },
-    {
-      id: 'ID2',
-      title: 'Learn how to work with node',
-    },
-    {
-      id: 'ID3',
-      title: 'Try out some express.js',
-    },
-  ];
+
 router.get('/', async (req, res) => {
   const taskCollection = getCollection('tasks');
   

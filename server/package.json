@@ -8,7 +8,6 @@
     "start": "node app.js",
     "lint": "eslint *.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-    
   },
   "repository": {
     "type": "git",
@@ -22,7 +21,7 @@
   "homepage": "https://github.com/brzozka/labs-68735#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "eslint": "^7.24.0",
+    "eslint": "^7.25.0",
     "express": "^4.17.1",
     "mongodb": "^3.6.5"
   }

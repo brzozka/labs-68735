@@ -1,4 +1,4 @@
-const serverUrl = 'http://localhost:4000/api';
+const serverUrl = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
 
 export const getTasks = async () => {
   const response = await fetch(`${serverUrl}/tasks`);

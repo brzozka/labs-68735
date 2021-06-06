@@ -1,27 +1,27 @@
+  
+import 'dotenv/config';
 import express from 'express';
-import tasksRouter from './tasks.js';
-import client from './db.js';
 import cors from 'cors';
 
-
-
+import client from './db.js';
+import tasksRouter from './tasks.js';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.listen(4000, async () => {
-  console.log('Server is ready');
-
-  await client.connect();
-  console.log('Database is ready');
-});
-
 app.get('/', (req, res) => {
-    res.send('Hello, welcome to my assigment');
+  res.send('Hello World!');
 });
 
 app.use('/api/tasks', tasksRouter);
 
+const port = process.env.PORT || 4000;
 
+app.listen(port, async () => {
+  console.log(`Server is ready at port ${port}`);
+
+  await client.connect();
+  console.log('Database is ready');
+});
